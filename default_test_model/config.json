@@ -1,0 +1,64 @@
+{
+  "name": "test_config",
+  "n_gpu": 1,
+  "preprocessing": {
+    "sr": 22050
+  },
+  "arch": {
+    "type": "FastSpeech2",
+    "args": {
+      "num_layers": 4,
+      "hidden_size": 256,
+      "num_heads": 2,
+
+      "fft_conv1d_filter_size": 1024,
+      "fft_conv1d_kernel": [9, 1],
+      "fft_conv1d_padding": [4, 0],
+
+      "variance_predictor_filter_size": 256,
+      "variance_predictor_dropout": 0.5,
+      "n_bins": 256,
+      "duration_control": 1.0,
+      "pitch_control": 1.0,
+      "energy_control": 1.0,
+
+      "vocab_size": 300,
+      "max_seq_len": 3000,
+      "n_mels": 80,
+      "pad_id": 0,
+      "dropout": 0.1,
+
+      "stats": {
+        "pitch_min": -1.1665804636846648,
+        "pitch_max": 6.721676916620241,
+        "energy_min": -3.728992055597629,
+        "energy_max": 4.018132598090187
+      }
+    }
+  },
+  "data": {
+    "test": {
+      "batch_size": 1,
+      "num_workers": 1,
+      "datasets": [
+        {
+          "type": "CustomTextDataset",
+          "args": {
+            "texts_file": "test_data/texts.txt"
+          }
+        }
+      ]
+    }
+  },
+  "text_encoder": {
+    "type": "TextEncoder",
+    "args": {}
+  },
+  "vocoder": {
+    "type": "WaveGlow",
+    "args": {}
+  },
+  "trainer": {
+    "save_dir": "saved/"
+  }
+}
